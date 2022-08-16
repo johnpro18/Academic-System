@@ -10,19 +10,20 @@ export default function CreateLecturerInfo(props) {
     const [lecturerID, setLecturerID] = useState('');
     const [lecturerName, setLecturerName] = useState('');
     const [lecturerGender, setLecturerGender] = useState('');
+    const [lecturerIC, setLecturerIC] = useState('');
     const [lecturerProgramme, setLecturerProgramme] = useState('');
     const [lecturerNationality, setLecturerNationality] = useState('');
     const [lecturerPhoneNo, setLecturerPhoneNo] = useState('');
 
     function handleSubmit(e) {
-        e.preventDefault();
-        const url ='';
+        const url ='http://localhost:3500/lecturerinfos/add';
         axios.post(url, {
                 lecturerID: lecturerID,
                 lecturerName: lecturerName,
-                lecturerGender: lecturerGender,
-                lecturerProgramme: lecturerProgramme,
-                lecturerNationality: lecturerNationality,
+                lecturerGender: lecturerGender.value,
+                lecturerIC: lecturerIC,
+                lecturerProgramme: lecturerProgramme.value,
+                lecturerNationality: lecturerNationality.value,
                 lecturerPhoneNo: lecturerPhoneNo
             })
             .then((res) => {
@@ -44,7 +45,7 @@ export default function CreateLecturerInfo(props) {
                         className="form-control"
                         placeholder="Enter ID" 
                         value={lecturerID}
-                        onChange={setLecturerID}
+                        onChange={(e) => setLecturerID(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -54,7 +55,7 @@ export default function CreateLecturerInfo(props) {
                         className="form-control"
                         placeholder="Enter Name" 
                         value={lecturerName}
-                        onChange={setLecturerName}
+                        onChange={(e) => setLecturerName(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -65,6 +66,16 @@ export default function CreateLecturerInfo(props) {
                         value={lecturerGender}
                         onChange={setLecturerGender}
                         options={genderOptions}
+                    />
+                </div>
+                <div className="form-group py-2">
+                    <label>Lecturer IC:</label>
+                    <input 
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter IC" 
+                        value={lecturerIC}
+                        onChange={(e) => setLecturerIC(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -96,7 +107,7 @@ export default function CreateLecturerInfo(props) {
                         className="form-control"
                         placeholder="Enter Phone Number" 
                         value={lecturerPhoneNo}
-                        onChange={setLecturerPhoneNo}
+                        onChange={(e) => setLecturerPhoneNo(e.target.value)}
                     />
                 </div>
                 <div className="d-grid pt-5">

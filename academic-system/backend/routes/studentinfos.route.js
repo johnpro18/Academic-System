@@ -3,13 +3,14 @@ const router = require('express').Router();
 let Student = require('../models/studentinfo.model');
 
 // Get All Student Info
-router.route('/').get((req, res) => {
-    Student.find()
+router.route('/').get((res) => {
+    Student
+        .find()
         .then(studentinfos => res.json(studentinfos))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Add New Student Info
+// Create New Student Info
 router.route('/add').post((req, res) => {
     const studentID = req.body.studentID;
     const studentName = req.body.studentName;
@@ -20,7 +21,7 @@ router.route('/add').post((req, res) => {
     const studentNationality = req.body.studentNationality;
     const studentPhoneNo = req.body.studentPhoneNo;
 
-    const newStudent = new Student({
+    const newStudent = new Student ({
         studentID,
         studentName,
         studentGender,
@@ -31,28 +32,32 @@ router.route('/add').post((req, res) => {
         studentPhoneNo,
     });
 
-    newStudent.save()
-        .then(studentinfos => res.json('Student Added Successfully'))
+    newStudent
+        .save()
+        .then(() => res.json('Student Added Successfully'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 // Get Student Info By ID
 router.route('/:id').get((req, res) => {
-    Student.findById(req.params.id)
+    Student
+        .findById(req.params.id)
         .then(studentinfo => res.json(studentinfo))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 // Delete Student Info By ID
 router.route('/:id').delete((req, res) => {
-    Student.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Student Info Successfully Deleted'))
+    Student
+        .findByIdAndDelete(req.params.id)
+        .then(() => res.json('Student Info Deleted Successfully'))
         .catch(err => res.status(400).json('Error: '+ err));
 });
 
 // Update Student Info By ID
 router.route('/update/:id').post((req, res) => {
-    Student.findById(req.params.id)
+    Student
+        .findById(req.params.id)
         .then(studentinfo => {
             studentinfo.studentID = req.body.studentID;
             studentinfo.studentName = req.body.studentName;
@@ -63,8 +68,9 @@ router.route('/update/:id').post((req, res) => {
             studentinfo.studentNationality = req.body.studentNationality;
             studentinfo.studentPhoneNo = req.body.studentPhoneNo;
 
-            studentinfo.save()
-                .then(() => res.json('Student Info Successfully Updated'))
+            studentinfo
+                .save()
+                .then(() => res.json('Student Info Updated Successfully'))
                 .catch(err => res.status(400).json('Error: ' + err));
         })
         .catch(err => res.status(400).json('Error: ' + err));

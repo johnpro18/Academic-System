@@ -10,14 +10,13 @@ export default function CreateCourseInfo(props) {
     const [courseCredits, setCourseCredits] = useState('');
     const [courseProgramme, setCourseProgramme] = useState('');
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        const url = '';
+    function handleSubmit() {
+        const url = 'http://localhost:3500/courseinfos/add';
         axios.post(url, {
                 courseID: courseID,
                 courseName: courseName,
                 courseCredits: courseCredits,
-                courseProgramme: courseProgramme
+                courseProgramme: courseProgramme.value
             })
             .then((res) => {
                 console.log(res);
@@ -37,7 +36,7 @@ export default function CreateCourseInfo(props) {
                         className="form-control"
                         placeholder="Enter ID" 
                         value={courseID}
-                        onChange={setCourseID}
+                        onChange={(e) => setCourseID(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -47,7 +46,7 @@ export default function CreateCourseInfo(props) {
                         className="form-control"
                         placeholder="Enter Name" 
                         value={courseName}
-                        onChange={setCourseName}
+                        onChange={(e) => setCourseName(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -57,7 +56,7 @@ export default function CreateCourseInfo(props) {
                         className="form-control"
                         placeholder="Enter Credits" 
                         value={courseCredits}
-                        onChange={setCourseCredits}
+                        onChange={(e) => setCourseCredits(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">

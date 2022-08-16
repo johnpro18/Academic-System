@@ -44,13 +44,13 @@ export default function Navbar() {
                             <button className="btn btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown">Update</button>
                             <ul className="dropdown-menu">
                                 <li>
-                                    <Link to="/createstudentinfo" className="dropdown-item text-uppercase text-dark">Update Student Info</Link>
+                                    <Link to="/updatestudentinfo" className="dropdown-item text-uppercase text-dark">Update Student Info</Link>
                                 </li>
                                 <li>
-                                    <Link to="/createlecturerinfo" className="dropdown-item text-uppercase text-dark">Update Lecturer Info</Link>
+                                    <Link to="/updatelecturerinfo" className="dropdown-item text-uppercase text-dark">Update Lecturer Info</Link>
                                 </li>
                                 <li>
-                                    <Link to="/createcourseinfo" className="dropdown-item text-uppercase text-dark">Update Course Info</Link>
+                                    <Link to="/updatecourseinfo" className="dropdown-item text-uppercase text-dark">Update Course Info</Link>
                                 </li>
                             </ul>
                         </div>

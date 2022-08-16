@@ -17,21 +17,21 @@ export default function CreateStudentInfo(props) {
     const [studentNationality, setStudentNationality] = useState('');
     const [studentPhoneNo, setStudentPhoneNo] = useState('');
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        const url = 'http://localhost:5000/studentinfos/add';
-        axios.post(url, {
+    function handleSubmit() {
+        const url = 'http://localhost:3500/studentinfos/add';
+        axios
+            .post(url, {
                 studentID: studentID,
                 studentName: studentName,
-                studentGender: studentGender,
+                studentGender: studentGender.value,
                 studentIC: studentIC,
-                studentProgramme: studentProgramme,
-                studentIntake: studentIntake,
-                studentNationality: studentNationality,
+                studentProgramme: studentProgramme.value,
+                studentIntake: studentIntake.value,
+                studentNationality: studentNationality.value,
                 studentPhoneNo: studentPhoneNo        
             })
             .then((res) => {
-                console.log(res);
+                console.log(res.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -49,7 +49,7 @@ export default function CreateStudentInfo(props) {
                         className="form-control"
                         placeholder="Enter ID" 
                         value={studentID}
-                        onChange={setStudentID}
+                        onChange={(e) => setStudentID(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -59,7 +59,7 @@ export default function CreateStudentInfo(props) {
                         className="form-control"
                         placeholder="Enter Name" 
                         value={studentName}
-                        onChange={setStudentName}
+                        onChange={(e) => setStudentName(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -79,7 +79,7 @@ export default function CreateStudentInfo(props) {
                         className="form-control"
                         placeholder="Enter IC" 
                         value={studentIC}
-                        onChange={setStudentIC}
+                        onChange={(e) => setStudentIC(e.target.value)}
                     />
                 </div>
                 <div className="form-group py-2">
@@ -122,7 +122,7 @@ export default function CreateStudentInfo(props) {
                         className="form-control"
                         placeholder="Enter Phone Number" 
                         value={studentPhoneNo}
-                        onChange={setStudentPhoneNo}
+                        onChange={(e) => setStudentPhoneNo(e.target.value)}
                     />
                 </div>
                 <div className="d-grid pt-5">
