@@ -3,7 +3,7 @@ const router = require('express').Router();
 let Course = require('../models/courseinfo.model');
 
 // Get All Course Info
-router.route('/').get((res) => {
+router.route('/').get((req, res) => {
     Course
         .find()
         .then(courseinfos => res.json(courseinfos))

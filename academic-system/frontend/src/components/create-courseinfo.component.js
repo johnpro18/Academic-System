@@ -25,6 +25,7 @@ export default function CreateCourseInfo(props) {
                 console.log(err);
             })
     }
+    
     return (
         <div className="card p-5 mx-auto my-5 w-50 shadow">
             <h1 className="text-center text-uppercase pb-5">Create Course Information</h1>

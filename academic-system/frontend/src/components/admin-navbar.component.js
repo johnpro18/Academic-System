@@ -40,20 +40,7 @@ export default function Navbar() {
                         </div>
                     </li>
                     <li className="nav-item mx-3">
-                        <div className="dropdown">
-                            <button className="btn btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown">Update</button>
-                            <ul className="dropdown-menu">
-                                <li>
-                                    <Link to="/updatestudentinfo" className="dropdown-item text-uppercase text-dark">Update Student Info</Link>
-                                </li>
-                                <li>
-                                    <Link to="/updatelecturerinfo" className="dropdown-item text-uppercase text-dark">Update Lecturer Info</Link>
-                                </li>
-                                <li>
-                                    <Link to="/updatecourseinfo" className="dropdown-item text-uppercase text-dark">Update Course Info</Link>
-                                </li>
-                            </ul>
-                        </div>
+                        <button className="btn btn-lg" type="button">Logout</button>
                     </li>
                 </ul>
             </div>
