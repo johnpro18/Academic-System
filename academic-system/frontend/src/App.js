@@ -11,6 +11,8 @@ import CreateStudentInfo from './components/create-studentinfo.component';
 import CreateLecturerInfo from './components/create-lecturerinfo.component';
 import CreateCourseInfo from './components/create-courseinfo.component';
 import UpdateStudentInfo from './components/update-studentinfo.component';
+import UpdateLecturerInfo from './components/update-lecturerinfo.component';
+import UpdateCourseInfo from './components/update-courseinfo.component';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/createlecturerinfo" element={<CreateLecturerInfo />}/>
         <Route path="/createcourseinfo" element={<CreateCourseInfo />}/>
         <Route path="/updatestudentinfo/:id" element={<UpdateStudentInfo />}/>
+        <Route path="/updatelecturerinfo/:id" element={<UpdateLecturerInfo />}/>
+        <Route path="/updatecourseinfo/:id" element={<UpdateCourseInfo />}/>
       </Routes>
     </div>
   );

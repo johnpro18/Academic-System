@@ -22,6 +22,21 @@ export default function GetCourseInfo(props) {
             });
     }
 
+    function deleteCourseInfo(id) {
+        const url = 'http://localhost:3500/courseinfos/' + id;
+        axios
+            .delete(url)
+            .then((res) => {
+                console.log(res);
+                const newCourseInfos = courseInfos.filter((el) => el._id !== id);
+                setCourseInfos(newCourseInfos);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+
     return (
         <div className="card p-5 m-5 shadow">
             <h1 className="text-center text-uppercase pb-5">Course Information</h1>
@@ -43,8 +58,8 @@ export default function GetCourseInfo(props) {
                                 <td className="pt-3">{courseInfo.courseCredits}</td>
                                 <td className="pt-3">{courseInfo.courseProgramme}</td>
                                 <td>
-                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/update/{props.studentInfo._id'}>Update</Link>| 
-                                    <button className="btn btn-md mx-2 text-capitalize">Delete</button>
+                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/updatecourseinfo/' + courseInfo._id}>Update</Link>| 
+                                    <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteCourseInfo(courseInfo._id)}}>Delete</button>
                                 </td>
                             </tr>
                         );

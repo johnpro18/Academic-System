@@ -23,7 +23,7 @@ export default function GetStudentInfo(props) {
     }
 
     function deleteStudentInfo(id) {
-        const url = 'http://localhost:3500/studentinfos/delete/:' + id;
+        const url = 'http://localhost:3500/studentinfos/' + id;
         axios
             .delete(url)
             .then((res) => {
@@ -65,7 +65,7 @@ export default function GetStudentInfo(props) {
                                 <td className="pt-3">{studentInfo.studentNationality}</td>
                                 <td className="pt-3">{studentInfo.studentPhoneNo}</td>
                                 <td>
-                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/update/{props.studentInfo._id'}>Update</Link>| 
+                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/updatestudentinfo/' + studentInfo._id}>Update</Link>| 
                                     <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteStudentInfo(studentInfo._id)}}>Delete</button>
                                 </td>
                             </tr>

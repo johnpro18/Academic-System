@@ -22,6 +22,20 @@ export default function GetLecturerInfo(props) {
             });
     }
 
+    function deleteLecturerInfo(id) {
+        const url = 'http://localhost:3500/lecturerinfos/' + id;
+        axios
+            .delete(url)
+            .then((res) => {
+                console.log(res);
+                const newLecturerInfos = lecturerInfos.filter((el) => el._id !== id);
+                setLecturerInfos(newLecturerInfos);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <div className="card p-5 m-5 shadow">
             <h1 className="text-center text-uppercase pb-5">Lecturer Information</h1>
@@ -38,19 +52,19 @@ export default function GetLecturerInfo(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {lecturerInfos?.map((lecturerinfo, _id) => {
+                    {lecturerInfos?.map((lecturerInfo, _id) => {
                         return (
                             <tr className="text-caplitalize m-auto " key={_id}>
-                                <td className="pt-3">{lecturerinfo.lecturerID}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerName}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerGender}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerIC}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerProgramme}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerNationality}</td>
-                                <td className="pt-3">{lecturerinfo.lecturerPhoneNo}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerID}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerName}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerGender}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerIC}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerProgramme}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerNationality}</td>
+                                <td className="pt-3">{lecturerInfo.lecturerPhoneNo}</td>
                                 <td>
-                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/update/{props.studentInfo._id'}>Update</Link>| 
-                                    <button className="btn btn-md mx-2 text-capitalize">Delete</button>
+                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/updatelecturerinfo' + lecturerInfo._id}>Update</Link>| 
+                                    <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteLecturerInfo(lecturerInfo._id)}}>Delete</button>
                                 </td>
                             </tr>
                         );

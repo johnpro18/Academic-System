@@ -24,7 +24,7 @@ export default function UpdateStudentInfo(props) {
     useEffect(() => {
         function fetchData() {
             const id = params.id;
-            const url = 'http://localhost:3500/studentinfos/62fb7686c9451c7f8623c29b';
+            const url = 'http://localhost:3500/studentinfos/' + id;
             axios
                 .get(url)
                 .then((res) => {
@@ -36,7 +36,7 @@ export default function UpdateStudentInfo(props) {
                     studentIntake = res.data.studentIntake;
                     studentNationality = res.data.studentNationality;
                     studentPhoneNo = res.data.studentPhoneNo;
-                    console.log(res.data);
+                    console.log(res);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -68,6 +68,7 @@ export default function UpdateStudentInfo(props) {
             .catch((err) => {
                 console.log(err);
             })
+            navigate('/viewstudentinfo');
     }
 
     return (
