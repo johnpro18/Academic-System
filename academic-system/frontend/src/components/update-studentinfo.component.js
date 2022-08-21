@@ -38,7 +38,7 @@ export default function UpdateStudentInfo(props) {
                     studentPhoneNo = res.data.studentPhoneNo;
                     console.log(res);
                 })
-                .catch((err) => {
+            .catch((err) => {
                     console.log(err);
                 });
         }
@@ -68,7 +68,8 @@ export default function UpdateStudentInfo(props) {
             .catch((err) => {
                 console.log(err);
             })
-            navigate('/viewstudentinfo');
+            
+        navigate('/viewstudentinfo');
     }
 
     return (

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light p-4 shadow-sm">
-            <Link to="/" className="navbar-brand text-uppercase text-dark">Academic System</Link>
+            <Link to="/viewstudentinfo" className="navbar-brand text-uppercase text-dark">Academic System</Link>
             <div className="collapse navbar-collapse justify-content-end align-center px-5">
                 <ul className="navbar-nav px-5">
                     <li className="nav-item mx-3">

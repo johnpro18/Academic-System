@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import axios from 'axios';
 
@@ -16,6 +17,8 @@ export default function CreateStudentInfo(props) {
     const [studentIntake, setStudentIntake] = useState('');
     const [studentNationality, setStudentNationality] = useState('');
     const [studentPhoneNo, setStudentPhoneNo] = useState('');
+
+    const navigate = useNavigate();
 
     function handleSubmit() {
         const url = 'http://localhost:3500/studentinfos/add';
@@ -36,6 +39,8 @@ export default function CreateStudentInfo(props) {
             .catch((err) => {
                 console.log(err);
             })
+
+        navigate('/viewstudentinfo');
     }
 
     return (

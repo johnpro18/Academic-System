@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import axios from 'axios';
 
@@ -14,6 +15,8 @@ export default function CreateLecturerInfo(props) {
     const [lecturerProgramme, setLecturerProgramme] = useState('');
     const [lecturerNationality, setLecturerNationality] = useState('');
     const [lecturerPhoneNo, setLecturerPhoneNo] = useState('');
+
+    const navigate = useNavigate();
 
     function handleSubmit(e) {
         const url ='http://localhost:3500/lecturerinfos/add';
@@ -32,6 +35,8 @@ export default function CreateLecturerInfo(props) {
             .catch((err) => {
                 console.log(err);
             })
+
+        navigate('/viewlecturerinfo');
     }
 
     return (

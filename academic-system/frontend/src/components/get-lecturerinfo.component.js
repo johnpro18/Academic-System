@@ -4,6 +4,8 @@ import axios from 'axios';
 
 export default function GetLecturerInfo(props) {
     const [lecturerInfos, setLecturerInfos] = useState([]);
+    const [searchResults, setSearchResults] = useState('');
+    const [sortOrder, setSortOrder] = useState('Ascending');
 
     useEffect(() => {
         getLecturerInfos();
@@ -36,39 +38,76 @@ export default function GetLecturerInfo(props) {
             });
     };
 
+    function sortLecturerInfos(column) {
+        if(sortOrder === 'Ascending') {
+            const sortedLecturerInfos = [...lecturerInfos].sort((a, b) => 
+                a[column].toLowerCase() > b[column].toLowerCase() 
+                    ? 1
+                    : -1
+            )
+            setLecturerInfos(sortedLecturerInfos);
+            setSortOrder('Descending');
+        }
+        if(sortOrder === 'Descending') {
+            const sortedLecturerInfos = [...lecturerInfos].sort((a, b) => 
+                a[column].toLowerCase() < b[column].toLowerCase() 
+                    ? 1
+                    : -1
+            )
+            setLecturerInfos(sortedLecturerInfos);
+            setSortOrder('Ascending');
+        }
+    };
+
     return (
         <div className="card p-5 m-5 shadow">
             <h1 className="text-center text-uppercase pb-5">Lecturer Information</h1>
+            <form>
+                <div className='form-group mx-auto mb-5 py-2 w-50'>
+                    <input 
+                        type="text"
+                        className="form-control"
+                        placeholder="Search Lecturer Information" 
+                        onChange={(e) => setSearchResults(e.target.value)}
+                    />
+                </div>
+            </form>
             <table className='table table-hover table-striped'>
                 <thead>
-                    <tr className="text-uppercase py-3">
-                        <th>Lecturer ID</th>
-                        <th>Lecturer Name</th>
-                        <th>Lecturer Gender</th>
-                        <th>Lecturer IC</th>
-                        <th>Lecturer Programme</th>
-                        <th>Lecturer Nationality</th>
-                        <th>Lecturer Phone Number</th>
+                <tr className="text-uppercase py-3">
+                        <th onClick={() => sortLecturerInfos('lecturerID')}>Lecturer ID</th>
+                        <th onClick={() => sortLecturerInfos('lecturerName')}>Lecturer Name</th>
+                        <th onClick={() => sortLecturerInfos('lecturerGender')}>Lecturer Gender</th>
+                        <th onClick={() => sortLecturerInfos('lecturerIC')}>Lecturer IC</th>
+                        <th onClick={() => sortLecturerInfos('lecturerProgramme')}>Lecturer Programme</th>
+                        <th onClick={() => sortLecturerInfos('lecturerNationality')}>Lecturer Nationality</th>
+                        <th onClick={() => sortLecturerInfos('lecturerPhoneNo')}>Lecturer Phone No</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {lecturerInfos?.map((lecturerInfo, _id) => {
-                        return (
-                            <tr className="text-caplitalize m-auto " key={_id}>
-                                <td className="pt-3">{lecturerInfo.lecturerID}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerName}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerGender}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerIC}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerProgramme}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerNationality}</td>
-                                <td className="pt-3">{lecturerInfo.lecturerPhoneNo}</td>
-                                <td>
-                                    <Link className="btn btn-md mx-2 text-capitalize" to={'/updatelecturerinfo' + lecturerInfo._id}>Update</Link>| 
-                                    <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteLecturerInfo(lecturerInfo._id)}}>Delete</button>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {lecturerInfos
+                        .filter((lecturerInfo) => {
+                            return searchResults.toLowerCase() === ''
+                                ? lecturerInfo
+                                : lecturerInfo.lecturerID.toLowerCase().includes(searchResults) || lecturerInfo.lecturerName.toLowerCase().includes(searchResults);                            
+                        })
+                        .map((lecturerInfo, _id) => {
+                            return (
+                                <tr className="text-caplitalize m-auto " key={_id}>
+                                    <td className="pt-3">{lecturerInfo.lecturerID}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerName}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerGender}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerIC}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerProgramme}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerNationality}</td>
+                                    <td className="pt-3">{lecturerInfo.lecturerPhoneNo}</td>
+                                    <td>
+                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatelecturerinfo' + lecturerInfo._id}>Update</Link>| 
+                                        <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteLecturerInfo(lecturerInfo._id)}}>Delete</button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                 </tbody>
             </table>
         </div>

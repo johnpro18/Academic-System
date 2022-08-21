@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import axios from 'axios';
 
@@ -9,6 +10,8 @@ export default function CreateCourseInfo(props) {
     const [courseName, setCourseName] = useState('');
     const [courseCredits, setCourseCredits] = useState('');
     const [courseProgramme, setCourseProgramme] = useState('');
+
+    const navigate = useNavigate();
 
     function handleSubmit() {
         const url = 'http://localhost:3500/courseinfos/add';
@@ -24,6 +27,8 @@ export default function CreateCourseInfo(props) {
             .catch((err) => {
                 console.log(err);
             })
+        
+        navigate('/viewcourseinfo');
     }
     
     return (
