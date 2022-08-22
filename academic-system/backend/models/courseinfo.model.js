@@ -12,13 +12,41 @@ const courseSchema = new Schema ({
         required: true
     },
     courseCredits: {
-        type: Number,
+        type: String,
         required: true
     },
     courseProgramme: {
         type: String,
         required: true
-    }
+    },
+    courseLecturer: [{
+        lecturerID: {
+            type: String,
+            required: true
+        },
+        lecturerName: {
+            type: String,
+            required: true
+        },
+        lecturerGroup: {
+            type: String,
+            require: true
+        }
+    }],
+    courseStudents: [{
+        studentID: {
+            type: String,
+            required: true
+        },
+        studentName: {
+            type: String,
+            required: true 
+        },
+        studentGroup: {
+            tpye: String,
+            required: true
+        }
+    }]
 }, {
     timestamps: true,
 });

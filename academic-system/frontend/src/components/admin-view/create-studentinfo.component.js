@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import axios from 'axios';
 
-import { genderOptions } from '../data/gender-options';
-import { programmeOptions } from '../data/programme-options';
-import { intakeOptions } from '../data/intake-options';
-import { nationalityOptions } from '../data/nationality-options';
+import { genderOptions } from '../../data/gender-options';
+import { programmeOptions } from '../../data/programme-options';
+import { intakeOptions } from '../../data/intake-options';
+import { nationalityOptions } from '../../data/nationality-options';
 
 export default function CreateStudentInfo(props) {
     const [studentID, setStudentID] = useState('');

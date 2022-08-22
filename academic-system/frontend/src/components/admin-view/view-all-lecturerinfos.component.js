@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function GetLecturerInfo(props) {
+export default function ViewAllLecturerInfos(props) {
     const [lecturerInfos, setLecturerInfos] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const [sortOrder, setSortOrder] = useState('Ascending');
@@ -11,6 +11,7 @@ export default function GetLecturerInfo(props) {
         getLecturerInfos();
     }, []);
 
+    // Get Lecturer Infos
     function getLecturerInfos() {
         const url = 'http://localhost:3500/lecturerinfos/';
         axios
@@ -24,6 +25,7 @@ export default function GetLecturerInfo(props) {
             });
     }
 
+    // Delete Lecturer Info
     function deleteLecturerInfo(id) {
         const url = 'http://localhost:3500/lecturerinfos/' + id;
         axios
@@ -38,6 +40,7 @@ export default function GetLecturerInfo(props) {
             });
     };
 
+    // Sort Lecturer Infos
     function sortLecturerInfos(column) {
         if(sortOrder === 'Ascending') {
             const sortedLecturerInfos = [...lecturerInfos].sort((a, b) => 
@@ -102,7 +105,7 @@ export default function GetLecturerInfo(props) {
                                     <td className="pt-3">{lecturerInfo.lecturerNationality}</td>
                                     <td className="pt-3">{lecturerInfo.lecturerPhoneNo}</td>
                                     <td>
-                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatelecturerinfo' + lecturerInfo._id}>Update</Link>| 
+                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatelecturerinfo/' + lecturerInfo._id}>Update</Link>| 
                                         <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteLecturerInfo(lecturerInfo._id)}}>Delete</button>
                                     </td>
                                 </tr>

@@ -3,10 +3,10 @@ import Select from 'react-select';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { genderOptions } from '../data/gender-options';
-import { programmeOptions } from '../data/programme-options';
-import { intakeOptions } from '../data/intake-options';
-import { nationalityOptions } from '../data/nationality-options';
+import { genderOptions } from '../../data/gender-options';
+import { programmeOptions } from '../../data/programme-options';
+import { intakeOptions } from '../../data/intake-options';
+import { nationalityOptions } from '../../data/nationality-options';
 
 export default function UpdateStudentInfo(props) {
     const [studentID, setStudentID] = useState('');
@@ -22,33 +22,31 @@ export default function UpdateStudentInfo(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        function fetchData() {
-            const id = params.id;
-            const url = 'http://localhost:3500/studentinfos/' + id;
+        // Get Student Info
+        function getStudentInfo() {
+            const url = 'http://localhost:3500/studentinfos/' + params.id;
             axios
                 .get(url)
                 .then((res) => {
-                    studentID = res.data.studentID;
-                    studentName = res.data.studentName;
-                    studentGender = res.data.studentGender;
-                    studentIC = res.data.studentIC;
-                    studentProgramme = res.data.studentProgramme;
-                    studentIntake = res.data.studentIntake;
-                    studentNationality = res.data.studentNationality;
-                    studentPhoneNo = res.data.studentPhoneNo;
+                    setStudentID(res.data.studentID);
+                    setStudentName(res.data.studentName);
+                    setStudentGender(res.data.studentGender.value);
+                    setStudentIC(res.data.studentIC);
+                    setStudentProgramme(res.data.studentProgramme.value);
+                    setStudentIntake(res.data.studentIntake.value);
+                    setStudentNationality(res.data.studentNationality.value);
+                    setStudentPhoneNo(res.data.studentPhoneNo);
                     console.log(res);
                 })
-            .catch((err) => {
+                .catch((err) => {
                     console.log(err);
                 });
         }
 
-        fetchData();
-
-        return;
+        getStudentInfo();
     }, [params.id]);
-    
 
+    // Handle Post Submit
     function handleSubmit() {
         const url = 'http://localhost:3500/studentinfos/update/' + params.id;
         axios

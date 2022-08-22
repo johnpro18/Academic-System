@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function AdminNavbar() {
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light p-4 shadow-sm">
             <Link to="/viewstudentinfo" className="navbar-brand text-uppercase text-dark">Academic System</Link>

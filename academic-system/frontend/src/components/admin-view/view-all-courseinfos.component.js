@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function GetCourseInfo(props) {
+export default function ViewAllCourseInfos(props) {
     const [courseInfos, setCourseInfos] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const [sortOrder, setSortOrder] = useState('Ascending');
@@ -11,6 +11,7 @@ export default function GetCourseInfo(props) {
         getCourseInfos();
     }, []);
 
+    // Get Course Infos
     function getCourseInfos() {
         const url = 'http://localhost:3500/courseinfos/';
         axios
@@ -24,6 +25,7 @@ export default function GetCourseInfo(props) {
             });
     }
 
+    // Delete Course Info
     function deleteCourseInfo(id) {
         const url = 'http://localhost:3500/courseinfos/' + id;
         axios
@@ -38,6 +40,7 @@ export default function GetCourseInfo(props) {
             });
     };
 
+    // Sort Course Infos
     function sortCourseInfo(column) {
         if(sortOrder === 'Ascending') {
             const sortedCourseInfos = [...courseInfos].sort((a, b) => 
@@ -58,7 +61,6 @@ export default function GetCourseInfo(props) {
             setSortOrder('Ascending');
         }
     };
-
 
     return (
         <div className="card p-5 m-5 shadow">
@@ -97,7 +99,9 @@ export default function GetCourseInfo(props) {
                                     <td className="pt-3">{courseInfo.courseCredits}</td>
                                     <td className="pt-3">{courseInfo.courseProgramme}</td>
                                     <td>
-                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatecourseinfo/' + courseInfo._id}>Update</Link>| 
+                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatecourseinfo/' + courseInfo._id}>View Students</Link>|
+                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatecourseinfo/' + courseInfo._id}>View Lecturers</Link>| 
+                                        <Link className="btn btn-md mx-2 text-capitalize" to={'/updatecourseinfo/' + courseInfo._id}>Update</Link>|  
                                         <button className="btn btn-md mx-2 text-capitalize" onClick={() => {deleteCourseInfo(courseInfo._id)}}>Delete</button>
                                     </td>
                                 </tr>

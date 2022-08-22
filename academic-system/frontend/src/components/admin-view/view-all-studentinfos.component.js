@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function GetStudentInfo(props) {
+export default function ViewAllStudentInfos(props) {
     const [studentInfos, setStudentInfos] = useState([]);
     const [searchResults, setSearchResults] = useState('');
     const [sortOrder, setSortOrder] = useState('Ascending');
@@ -11,6 +11,7 @@ export default function GetStudentInfo(props) {
         getStudentInfos();
     }, []);
 
+    // Get Student Infos
     function getStudentInfos() {
         const url = 'http://localhost:3500/studentinfos/';
         axios
@@ -24,6 +25,7 @@ export default function GetStudentInfo(props) {
             });    
     }
 
+    // Delete Student Info
     function deleteStudentInfo(id) {
         const url = 'http://localhost:3500/studentinfos/' + id;
         axios
@@ -38,6 +40,7 @@ export default function GetStudentInfo(props) {
             });
     };
 
+    // Sort Student Infos
     function sortStudentInfos(column) {
         if(sortOrder === 'Ascending') {
             const sortedStudentInfos = [...studentInfos].sort((a, b) => 

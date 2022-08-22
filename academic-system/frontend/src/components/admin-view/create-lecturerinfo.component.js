@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import axios from 'axios';
 
-import { genderOptions } from '../data/gender-options';
-import { programmeOptions } from '../data/programme-options';
-import { nationalityOptions } from '../data/nationality-options';
+import { genderOptions } from '../../data/gender-options';
+import { programmeOptions } from '../../data/programme-options';
+import { nationalityOptions } from '../../data/nationality-options';
 
 export default function CreateLecturerInfo(props) {
     const [lecturerID, setLecturerID] = useState('');
@@ -18,7 +18,7 @@ export default function CreateLecturerInfo(props) {
 
     const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    function handleSubmit() {
         const url ='http://localhost:3500/lecturerinfos/add';
         axios.post(url, {
                 lecturerID: lecturerID,
